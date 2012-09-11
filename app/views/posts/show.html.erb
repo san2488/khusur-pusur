@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @post.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @post.content %>
+</p>
+<p>
+  <b>Category:</b>
+    <%=@post.category.name%>
+</p>
+    <%= render :partial=>"votes/form", :locals => {:obj => @post, :url => post_votes_path(:voteable_type => "post", :post_id => @post.id )}  %>
+<p><%= @post.votes.count %> people voted for this post.</p>
+<h2>Comments</h2>
+<% @post.comments.each do |comment| %>
+    <p>
+      <b>Commenter:</b>
+      <%= comment.content %>  <p><%= comment.votes.count %> people voted for this comment.</p>
+      <span class="vote">
+        <!--http://stackoverflow.com/questions/4402556/rails-confused-about-syntax-for-passing-locals-to-partials-->
+        <%= render :partial=>"votes/form", :locals => {:obj => comment, :url => comment_votes_path(:voteable_type => "comment", :comment_id => comment.id )}  %>
+      </span>
+    </p>
+<% end %>
+<h2>Add a comment:</h2>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+    <div class="field">
+      <%= f.label :content %><br />
+      <%= f.text_area :content %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

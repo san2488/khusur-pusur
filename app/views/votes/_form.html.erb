@@ -1,0 +1,9 @@
+<!--http://guides.rubyonrails.org/getting_started.html#rendering-a-partial-form
+http://stackoverflow.com/questions/3596219/rails-2-3-8-form-for-partials-not-generating-correct-action-url-->
+<%= form_for([local_assigns[:obj],
+              local_assigns[:obj].votes.build],
+             :url => local_assigns[:url]) do |f| %>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
