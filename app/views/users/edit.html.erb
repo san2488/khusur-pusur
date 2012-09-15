@@ -1,6 +1,8 @@
-<h1>Editing user</h1>
+<h1>Edit Profile</h1>
 
-<%= render 'form' %>
+<%= form_for @user do |f| %>
+    <%= render :partial => "form", :object => f, :locals => { :user => @user } %>
+    <%= f.submit "Update" %>
+<% end %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<br /><b> View </b><%= link_to " Profile", account_path %>
