@@ -5,4 +5,5 @@ attr_accessible :content
 
   has_many :votes, :as=>:voteable
   belongs_to :post
+  belongs_to :user
 end

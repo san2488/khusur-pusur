@@ -11,30 +11,40 @@
 </p>
 <p>
   <b>Category:</b>
-    <%=@post.category.name%>
+  <%= @post.category.name %>
 </p>
-    <%= render :partial=>"votes/form", :locals => {:obj => @post, :url => post_votes_path(:voteable_type => "post", :post_id => @post.id )}  %>
-<p><%= @post.votes.count %> people voted for this post.</p>
+<% if @post.votes.any? { |v| v.user_id == @current_user.id } %>
+    <p>You <% if @post.votes.count - 1 > 0 %> and <%= pluralize @post.votes.count - 1, "person" %> <% end %> voted for this post.</p>
+<% else %>
+    <%= render :partial => "votes/form", :locals => {:obj => @post, :url => post_votes_path(:voteable_type => "post", :post_id => @post.id)} %>
+    <p><%= pluralize @post.votes.count, "person" %> voted for this post.</p>
+<% end %>
 <h2>Comments</h2>
 <% @post.comments.each do |comment| %>
     <p>
-      <b>Commenter:</b>
-      <%= comment.content %>  <p><%= comment.votes.count %> people voted for this comment.</p>
-      <span class="vote">
+      <b></b>
+      <%= comment.content %>
+    <span class="vote">
         <!--http://stackoverflow.com/questions/4402556/rails-confused-about-syntax-for-passing-locals-to-partials-->
-        <%= render :partial=>"votes/form", :locals => {:obj => comment, :url => comment_votes_path(:voteable_type => "comment", :comment_id => comment.id )}  %>
+<% if comment.votes.any? { |v| v.user_id == @current_user.id } %>
+    <p>You <% if @post.votes.count - 1 > 0 %> and <%= pluralize comment.votes.count - 1, "people" %><%end%> voted for this comment.</p>
+<% else %>
+        <%= render :partial => "votes/form", :locals => {:obj => comment, :url => comment_votes_path(:voteable_type => "comment", :comment_id => comment.id)} %>
+          <p><%= pluralize comment.votes.count, "people" %> voted for this comment.</p>
+<% end %>
       </span>
     </p>
 <% end %>
 <h2>Add a comment:</h2>
 <%= form_for([@post, @post.comments.build]) do |f| %>
     <div class="field">
-      <%= f.label :content %><br />
+      <%= f.label :content %>
+      <br/>
       <%= f.text_area :content %>
     </div>
     <div class="actions">
       <%= f.submit %>
     </div>
 <% end %>
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<% if @is_own_post%> <%= link_to 'Edit', edit_post_path(@post) %> |<%end%>
 <%= link_to 'Back', posts_path %>

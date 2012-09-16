@@ -1,35 +1,35 @@
 class PostsController < ApplicationController
+
+  before_filter :require_user, :except => [:show, :index]
+  before_filter :is_own_post?
+  before_filter :require_own_post, :only => [:edit, :destroy, :update]
+
+  def require_own_post
+    @post = Post.find(params[:id])
+    unless   is_own_post?
+      redirect_to posts_path
+    end
+  end
+
+  def is_own_post?
+    @is_own_post = @current_user && ((@post && @current_user.id == @post.user_id) || @current_user.is_admin)
+  end
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-    end
+    @posts = Post.all.sort_by{|p| - p.updated_at.to_i}
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @post }
-    end
   end
 
   # GET /posts/new
   # GET /posts/new.json
   def new
     @post = Post.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @post }
-    end
   end
 
   # GET /posts/1/edit

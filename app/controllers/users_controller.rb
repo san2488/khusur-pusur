@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
-  #before_filter :ensure_login, :only => [:edit, :update, :destroy]
-  before_filter :ensure_logout, :only => [:new, :create]
+  before_filter :require_user, :only => [:edit, :update, :destroy, :index]
+  before_filter :require_no_user, :only => [:new, :create]
+
+  def is_self?
+    @is_self = @current_user && ((@current_user.id == @user.id) || @current_user.is_admin)
+  end
+
   def index
-    @users = Post.all
+    @users = User.all
   end
   def new
     @user = User.new
@@ -11,28 +16,28 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      @user_session = @user.sessions.create
+      @user_session = @user.user_sessions.create
       session[:id] = @user_session.id
       flash[:notice] = "Welcome #{@user.name}, you are now registered"
-      redirect_to(root_url)
+      redirect_to(posts_path)
     else
       render(:action => 'new')
     end
   end
 
   def show
-    @user = current_user
+    @user = User.find_by_id(params[:id])
   end
 
   def edit
-    @user = current_user
+    @user = User.find_by_id(params[:id])
   end
 
   def update
-    @user = current_user # makes our views "cleaner" and more consistent
+    @user = User.find_by_id(params[:id]) # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
       flash[:notice] = "Profile successfully updated!"
-      redirect_to root_url
+      redirect_to user_path
     else
       render :action => :edit
     end

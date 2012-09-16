@@ -1,7 +1,7 @@
 class UserSessionsController < ApplicationController
 
-  before_filter :ensure_login, :only => :destroy
-  before_filter :ensure_logout, :only => [:new, :create]
+  before_filter :require_user, :only => :destroy
+  before_filter :require_no_user, :only => [:new, :create]
 
   def index
     redirect_to(new_user_session_path)
@@ -16,7 +16,7 @@ class UserSessionsController < ApplicationController
     if @user_session.save
       session[:id] = @user_session.id
       flash[:notice] = "Hello #{@user_session.user.name}, you are now logged in"
-      redirect_to(root_url)
+      redirect_to(posts_path)
     else
       render(:action => 'new')
     end

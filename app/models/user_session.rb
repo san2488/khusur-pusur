@@ -1,7 +1,7 @@
 #http://www.robertsosinski.com/2008/02/23/simple-and-restful-authentication-for-ruby-on-rails/
 class UserSession < ActiveRecord::Base
   attr_accessor :email, :password, :match
-
+  attr_accessible :email, :password, :ip_address, :path
   belongs_to :user
   before_validation :authenticate_user
 
