@@ -25,11 +25,6 @@ class VotesController < ApplicationController
   # GET /votes/new.json
   def new
     @vote = Vote.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @vote }
-    end
   end
 
   # GET /votes/1/edit
@@ -45,10 +40,12 @@ class VotesController < ApplicationController
     if @klass == 'comment'
       @comment = Comment.find(params[:comment_id])
       @vote = @comment.votes.create(params[:vote])
+      current_user.votes.push(@vote)
       redirect_to post_path(@comment.post_id)
     else
       @post = Post.find(params[:post_id])
       @vote = @post.votes.create(params[:vote])
+      current_user.votes.push(@vote)
       redirect_to post_path(@post)
     end
   end
