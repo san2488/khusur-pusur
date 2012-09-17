@@ -4,6 +4,6 @@ http://stackoverflow.com/questions/3596219/rails-2-3-8-form-for-partials-not-gen
               local_assigns[:obj].votes.build],
              :url => local_assigns[:url]) do |f| %>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "+1" %> <%= pluralize local_assigns[:obj].votes.count, "person" %> voted for this <%= local_assigns[:obj].class.to_s.downcase %>.
     </div>
 <% end %>

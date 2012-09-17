@@ -8,26 +8,25 @@
       <%= submit_tag "Search", :name => nil %>
     </div>
 <% end %>
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 <% @posts.each do |post| %>
-  <tr>
-    <td><%= post.title %></td>
-    <td><%= post.category.name %></td>
-    <td><%= post.content %></td>
-    <td><%= link_to 'Show', post %></td>
-    <% if @is_own_post %>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
-  </tr>
+      <div class="postBar">
+          <div class="postTopBar">&nbsp;<div class="left author">posted by <%= link_to post.user.name.capitalize, user_path(post.user) %></div><div class="votes right"><span class="votesCount"><%=  post.votes.count %></span><%= "Vote".pluralize(post.votes.count) %></div></div>
+          <div class="postContentBar clear">
+            <h3><%= link_to post.title, post %></h3>
+            <p><%= post.content %></p>
+          </div>
+          <div class="postBottomBar">   &nbsp;
+            <div class="left"><span class="category">#<%= post.category.name.downcase %></span></div>
+            <div class="right">
+              <% if @is_own_post %>
+                  <%= link_to 'Edit', edit_post_path(post) %>
+                  <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+            </div>
+          </div>
+      </div>
 <% end %>
-</table>
 
 <br />
 
-<%= link_to 'New Post', new_post_path %>
+<span class="addNew"><%= link_to '+New Post', new_post_path %></span>

@@ -1,4 +1,5 @@
 <h1>Login</h1>
+<div class="left">
 <%= form_for @user_session, :as => :user_session, :url => { :action => "create" } do |f| %>
     <%= f.label :email %><br />
     <%= f.text_field :email %><br />
@@ -10,10 +11,12 @@
     <br />
     <%= f.submit "Login" %>
 <% end %>
-
+</div>
+<div class="right">
 <p>
   <b>Don't have an account ? </b><%= link_to ' Register here ', new_user_path %>
-
 </p>
+  <%= render :partial => 'users/form' %>
+</div>
 
 <!-- New User?> <!-- %= f.submit "Register" %>
