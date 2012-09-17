@@ -17,9 +17,9 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.sort_by{|p| - p.updated_at.to_i}
+    #@posts = Post.all.sort_by{|p| - p.updated_at.to_i}
+    @posts = Post.search(params[:type], params[:search])
   end
-
   # GET /posts/1
   # GET /posts/1.json
   def show
