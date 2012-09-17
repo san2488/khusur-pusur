@@ -1,5 +1,14 @@
-<p id="notice"><%= notice %></p>
+<div>
+  <b>Name:</b>
+  <%= @user.name %>
+</div>
 
+<p>
+  <b>Email:</b>
+  <%=@user.email %>
+</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<div><b>Is Administrator:</b> <%= @user.is_admin ? "Yes":"No" %></div>
+
+<%= link_to 'Edit Profile', edit_user_path(@user)  %>  |
 <%= link_to 'Back', users_path %>
