@@ -50,6 +50,16 @@ class VotesController < ApplicationController
     end
   end
 
+  def list
+    @klass = params[:voteable_type]
+    if @klass == 'comment'
+      @comment = Comment.find(params[:id])
+      @votes = @comment.votes
+    else
+      @post = Post.find(params[:id])
+      @votes = @post.votes
+    end
+  end
   # PUT /votes/1
   # PUT /votes/1.json
   def update
