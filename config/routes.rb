@@ -15,8 +15,9 @@ KhusurPusur::Application.routes.draw do
   resources :posts do
     resources :comments
     resources :votes
+    get :report, :on => :collection
   end
-  resources :comments  do
+    resources :comments  do
     resources :votes
   end
   resources :users
@@ -30,6 +31,7 @@ KhusurPusur::Application.routes.draw do
 
   match 'login' => "user_sessions#new",      :as => :login
   match 'logout' => "user_sessions#destroy", :as => :logout
+  #match 'posts/report' => "posts#report", :as => :report
   #match 'list' => "users#list", :as=>:list
   resources :users
   # give us our some normal resource routes for users
@@ -70,7 +72,7 @@ KhusurPusur::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'user_sessions#new'
+  root :to => 'posts#index'
 
   # See how all your routes lay out with "rake routes"
 

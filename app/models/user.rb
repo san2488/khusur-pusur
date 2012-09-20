@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   def self.find_by_email_and_password(email, password)
     user = self.find_by_email(email)
-    if user and user.encrypted_password == ENCRYPT.hexdigest(password + user.salt)
+    if user and user.encrypted_password == ENCRYPT.hexdigest(password+ user.salt)
       return user
     end
   end

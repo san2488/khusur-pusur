@@ -1,0 +1,13 @@
+<h1>Report</h1>
+<table>
+  <th>Post</th>
+  <th>Comments</th>
+  <th>Votes</th>
+<%  @posts.each do |post|%>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.comments.count %></td>
+      <td><%= post.votes.count %></td>
+    </tr>
+<%end %>
+</table>

@@ -3,9 +3,25 @@ http://stackoverflow.com/questions/3596219/rails-2-3-8-form-for-partials-not-gen
 <%= form_for([local_assigns[:obj],
               local_assigns[:obj].votes.build],
              :url => local_assigns[:url]) do |f| %>
-    <div class="actions">
-      <%= f.submit "+1" %> <%= pluralize local_assigns[:obj].votes.count, "person" %>
-      (<%= link_to 'Show', '/votes/list?id='+local_assigns[:obj].id.to_s+'&voteable_type='+local_assigns[:obj].class.to_s, :target => :blank %>)
-      voted for this <%= local_assigns[:obj].class.to_s.downcase %>.
-    </div>
+    <p>
+      <% if local_assigns[:obj].votes.any? { |v| @current_user && v.user_id == @current_user.id } %>
+          <a href='/votes/list?id=<%= local_assigns[:obj].id.to_s+'&voteable_type='+local_assigns[:obj].class.to_s %>' target="_blank">
+            You
+            <% if local_assigns[:obj].votes.count - 1 > 0 %>
+                and <%= pluralize local_assigns[:obj].votes.count - 1, "person" %>
+            <% end %></a> voted for this <%= local_assigns[:obj].class.to_s.downcase %></p>
+      <% else %>
+          <% if @current_user && local_assigns[:obj].user.id != @current_user.id %>
+          <div class="actions">
+            <%= f.submit "+1" %>
+          </div>
+              <% end %>
+          <% if local_assigns[:obj].votes.count > 0 %>
+          <p>
+            <a href='/votes/list?id=<%= local_assigns[:obj].id.to_s+'&voteable_type='+local_assigns[:obj].class.to_s %>' target="_blank">
+              <%= pluralize local_assigns[:obj].votes.count, "person" %></a> voted for
+            this <%= local_assigns[:obj].class.to_s.downcase %>
+          </p>
+              <% end %>
+      <% end %>
 <% end %>

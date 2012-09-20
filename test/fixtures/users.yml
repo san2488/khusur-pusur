@@ -4,8 +4,15 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
+<% require 'digest/sha2' %>
+sujay:
+  email: sujay.narsale@gmail.com
+  encrypted_password: 123456
+
+  #<%= Digest::SHA2.hexdigest('123456' + 'ev2w8axNvnwb') %>
+
+  #bb67491992d8baef937a3bfb79a84687c1653372873f50da852ee86fc7b046b0
+  #
 #
 two: {}
 #  column: value

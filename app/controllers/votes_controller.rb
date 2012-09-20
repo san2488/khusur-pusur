@@ -52,7 +52,7 @@ class VotesController < ApplicationController
 
   def list
     @klass = params[:voteable_type]
-    if @klass == 'comment'
+    if @klass.to_s.downcase == 'comment'
       @comment = Comment.find(params[:id])
       @votes = @comment.votes
     else

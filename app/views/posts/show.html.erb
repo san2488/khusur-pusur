@@ -7,29 +7,18 @@
 <span class="category">
   #<%= @post.category.name %>
 </span>
-<% if @post.votes.any? { |v| v.user_id == @current_user.id } %>
-    <p>You
-      <% if @post.votes.count - 1 > 0 %> and <%= pluralize @post.votes.count - 1, "person" %>
-          (<%= link_to 'Show', '/votes/list?id='+@post.id.to_s+'&voteable_type=post', :target => :blank %>)
-      <% end %> voted for this post.</p>
-<% else %>
-    <%= render :partial => "votes/form", :locals => {:obj => @post, :url => post_votes_path(:voteable_type => "post", :post_id => @post.id)} %>
-<% end %>
+        <%= render :partial => "votes/form", :locals => {:obj => @post, :url => post_votes_path(:voteable_type => "post", :post_id => @post.id)} %>
 <h2>Comments</h2>
 <% @post.comments.each do |comment| %>
     <p>
-      <b></b>
       <%= comment.user.name.capitalize %> says: <%= comment.content %>
+      <% if @current_user && (comment.user_id == @current_user.id || @current_user.is_admin)     %>
+          | <%= link_to 'Edit', comment_path(comment)  %>
+          | <%= link_to 'Delete', post_comment_path(@post,comment), :confirm => 'Are you sure?', :method=>:delete   %>
+      <%end%>
       <span class="vote">
         <!--http://stackoverflow.com/questions/4402556/rails-confused-about-syntax-for-passing-locals-to-partials-->
-        <% if comment.votes.any? { |v| v.user_id == @current_user.id } %>
-    <p>You
-      <% if @post.votes.count - 1 > 0 %> and <%= pluralize comment.votes.count - 1, "person" %>
-          (<%= link_to 'Show', '/votes/list?id='+comment.id.to_s+'&voteable_type=comment', :target => :blank %>)
-      <% end %> voted for this comment.</p>
-<% else %>
         <%= render :partial => "votes/form", :locals => {:obj => comment, :url => comment_votes_path(:voteable_type => "comment", :comment_id => comment.id)} %>
-<% end %>
       </span>
     </p>
 <% end %>
@@ -38,7 +27,7 @@
     <div class="field">
       <%= f.label :content %>
       <br/>
-      <%= f.text_area :content %>
+      <%= f.text_area :content, :cols => '30', :rows => '2' %>
     </div>
     <div class="actions">
       <%= f.submit %>

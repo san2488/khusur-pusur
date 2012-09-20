@@ -14,6 +14,11 @@ class PostsController < ApplicationController
   def is_own_post?
     @is_own_post = @current_user && ((@post && @current_user.id == @post.user_id) || @current_user.is_admin)
   end
+
+  def report
+    @posts = Post.all
+  end
+
   # GET /posts
   # GET /posts.json
   def index

@@ -87,7 +87,7 @@ body {
 }
 .addNew {
 }
-.addNew a, .actions input{
+.addNew a, .actions input[type=submit]{
     font-size: 12px;
     padding: 4px 10px 6px 10px;
     border-radius: 4px;

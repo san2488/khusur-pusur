@@ -8,8 +8,9 @@ class UserSessionsController < ApplicationController
   end
 
   def new
-    @user_session = UserSession.new
     @user = User.new
+    @user_session = UserSession.new
+
   end
 
   def create
@@ -19,7 +20,7 @@ class UserSessionsController < ApplicationController
       flash[:notice] = "Hello #{@user_session.user.name}, you are now logged in"
       redirect_to(posts_path)
     else
-      render(:action => 'new')
+      redirect_to(login_path)
     end
   end
 
