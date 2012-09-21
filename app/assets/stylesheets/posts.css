@@ -28,6 +28,9 @@
     padding: 0 8px 0 8px;
 }
 
+.vote {
+    font-size: 12px;
+}
 
 .votes {
     padding: 1px 6px 0px;
@@ -48,5 +51,17 @@
     margin-right: 5px;
 }
 .author {
+    font-size: 12px;
+}
+
+.comment {
+    background: #F9EDBE;
+    padding: 4px;
+    /*display: inline-block;*/
+    width: 25%;
+    margin-top: 6px;
+    border:1px solid #F0C36D;
+}
+.comment .link {
     font-size: 12px;
 }

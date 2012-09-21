@@ -3,11 +3,15 @@
 <head>
   <title>KhusurPusur - A Backchannel Application</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "jquery" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="topNav"><div class="heading"><%= link_to "@khusur~pusur", posts_path %></div> <% if @current_user %><div class="userInfo">Welcome <%= link_to @current_user.name.capitalize, @current_user %>!
+<div id="topNav"><div class="heading"><%= link_to "@khusur~pusur", posts_path %></div>
+  <div class="userInfo">
+  <% if @current_user %>
+        Welcome <%= link_to @current_user.name.capitalize, @current_user %>!
       <% if @current_user && @current_user.is_admin %>
         | <%= link_to 'Manage Users', users_path %>
         | <%= link_to 'Manage Categories', categories_path %>
@@ -17,6 +21,17 @@
       <%else%>
          <%= link_to 'Login', login_path %>
   <%end%>
+  </div>
+</div>
+<div id="flashWrapper">
+  <% if flash[:error] %>
+    <div id="error">
+      <%= flash[:error] %>
+    </div>
+    <% else %>
+      <div id="notice">
+        <%= flash[:notice] %>
+    <% end %>
   </div>
 </div>
 <div id="content">

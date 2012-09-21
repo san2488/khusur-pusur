@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def require_admin
     unless is_admin?
-      flash[:notice] = "Please login as admin to perform this task"
+      flash[:error] = "Please login as admin to perform this task"
       redirect_to(logout_path)
     end
   end

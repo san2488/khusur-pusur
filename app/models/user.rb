@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
   ENCRYPT = Digest::SHA2
 
   has_many :user_sessions, :dependent => :destroy
-  has_many :posts
-  has_many :comments
-  has_many :votes
+  has_many :posts, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
+  has_many :votes, :dependent => :destroy
 
   validates_uniqueness_of :email, :message => "is already in use by another person"
   #

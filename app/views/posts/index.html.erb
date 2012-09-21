@@ -1,4 +1,4 @@
-<h1>Listing posts</h1>
+<!--<h1>Posts</h1>-->
 
 
 <%= form_tag posts_path, :method => 'get' do %>
@@ -10,7 +10,11 @@
 <% end %>
 <% @posts.each do |post| %>
       <div class="postBar">
-          <div class="postTopBar">&nbsp;<div class="left author">posted by <%= link_to post.user.name.capitalize, user_path(post.user) %></div><div class="votes right"><span class="votesCount"><%=  post.votes.count %></span><%= "Vote".pluralize(post.votes.count) %></div></div>
+          <div class="postTopBar">&nbsp;
+            <div class="left author">
+              posted by <%= link_to post.user.name.capitalize, user_path(post.user) %> | last edited on <%= post.updated_at.asctime %>
+            </div>
+            <div class="votes right"><span class="votesCount"><%=  post.votes.count %></span><%= "Vote".pluralize(post.votes.count) %></div></div>
           <div class="postContentBar clear">
             <h3><%= link_to post.title, post %></h3>
             <p><%= post.content %></p>

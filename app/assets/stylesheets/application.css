@@ -134,3 +134,34 @@ body {
     padding: 2px 5px;
     font-size: 11px;
 }
+
+#flashWrapper #notice {
+    color: #222222;
+}
+#flashWrapper #error {
+    color: red;
+}
+#flashWrapper {
+    width: 100%;
+    position: static;
+    text-align: center;
+}
+
+#flashWrapper div {
+    /*float: right;*/
+    display: inline-block;
+    /*clear: both;*/
+    position: relative;
+    top: -8px;
+    background: #F9EDBE;
+    border-color: #F0C36D;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /*color: #222222;*/
+    padding: 0 10px;
+    font-size: 80%;
+    border-radius: 4px;
+    text-align: center;
+    z-index: 990;
+    margin: 0 auto;
+    line-height: normal;
+}
