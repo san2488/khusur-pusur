@@ -31,6 +31,7 @@ KhusurPusur::Application.routes.draw do
 
   match 'login' => "user_sessions#new",      :as => :login
   match 'logout' => "user_sessions#destroy", :as => :logout
+  match 'report' => "posts#report", :as => :report
   #match 'posts/report' => "posts#report", :as => :report
   #match 'list' => "users#list", :as=>:list
   resources :users

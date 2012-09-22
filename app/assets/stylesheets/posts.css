@@ -65,3 +65,19 @@
 .comment .link {
     font-size: 12px;
 }
+#noPosts {
+    width: 100%;
+    border:1px solid #F0C36D;
+    background: #F9EDBE;
+    display: block;
+    padding: 4px;
+    margin: 12px 0px;
+
+}
+.addComment {
+    border: 1px solid #D3D3D3;
+    background: none repeat scroll 0 0 #EEEEDD;
+    border-radius: 4px 4px 4px 4px;
+    padding: 12px;
+    width: 30%;
+}

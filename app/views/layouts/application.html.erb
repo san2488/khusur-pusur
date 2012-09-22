@@ -15,7 +15,7 @@
       <% if @current_user && @current_user.is_admin %>
         | <%= link_to 'Manage Users', users_path %>
         | <%= link_to 'Manage Categories', categories_path %>
-        | <%= link_to 'Report', 'posts/report' %>
+        | <%= link_to 'Report', '/report' %>
       <% end %>
         | <%= link_to 'Logout', logout_path %>
       <%else%>

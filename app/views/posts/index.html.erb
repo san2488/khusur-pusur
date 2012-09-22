@@ -11,7 +11,9 @@
 <div><br/>
 <span class="addNew"><%= link_to '+New Post', new_post_path %></span>
 <% if @posts.count == 0 %>
-  No posts to show!
+      <div id="noPosts">
+    No posts to show! Why don't you start one?
+      </div>
 <% end %>
 <% @posts.each do |post| %>
       <div class="postBar">
@@ -35,8 +37,6 @@
           </div>
       </div>
 <% end %>
-
-<br />
 
 <span class="addNew"><%= link_to '+New Post', new_post_path %></span>
     </div>
