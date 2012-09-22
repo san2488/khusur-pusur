@@ -1,13 +1,8 @@
-<table>
-  <tr>
-    <th>Voter</th>
-    <th>Email</th>
-  </tr>
+
 
   <% @votes.each do |vote| %>
-      <tr>
-        <td><%= vote.user.name %></td>
-        <td><%= vote.user.email %></td>
-      </tr>
+      <div class="usercard">
+      <span class="username"><%= vote.user.name %></span>
+       <span class="emailid"><%= vote.user.email %></span>
+      </div>
   <% end %>
-</table>

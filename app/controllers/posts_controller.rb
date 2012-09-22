@@ -50,7 +50,7 @@ class PostsController < ApplicationController
     current_user.posts.push(@post)
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @post, notice: 'Post was successfully created' }
         format.json { render json: @post, status: :created, location: @post }
       else
         flash[:error] = "There was a problem creating your post. Please try again."

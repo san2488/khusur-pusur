@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_filter :require_user, :only => [:create, :new]
+
   # GET /comments
   # GET /comments.json
   def index

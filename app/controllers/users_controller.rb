@@ -45,10 +45,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = current_user
+    @user = User.find_by_id(params[:id])
     @user.destroy
 
-    redirect_to user_path
+    redirect_to users_path
   end
 
 end

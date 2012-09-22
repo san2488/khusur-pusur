@@ -7,12 +7,24 @@
 <% require 'digest/sha2' %>
 sujay:
   email: sujay.narsale@gmail.com
-  encrypted_password: 123456
+  encrypted_password: <%= Digest::SHA2.hexdigest('123456'+ 'YapxNK/0W4Xt') %>
+  name: sujay
+  salt: YapxNK/0W4Xt
+  is_admin: t
 
   #<%= Digest::SHA2.hexdigest('123456' + 'ev2w8axNvnwb') %>
 
   #bb67491992d8baef937a3bfb79a84687c1653372873f50da852ee86fc7b046b0
   #
 #
-two: {}
-#  column: value
+mandar:
+  email: mschaudh@ncsu.edu
+  encrypted_password: <%= Digest::SHA2.hexdigest('123456'+ 'OipnZ058ZAzM') %>
+  name: mandar
+  salt: OipnZ058ZAzM
+
+altaf:
+  email: aspalana@ncsu.edu
+  encrypted_password: <%= Digest::SHA2.hexdigest('123456'+ 'l3b2+DKzicBu') %>
+  name: altaf
+  salt: l3b2+DKzicBu

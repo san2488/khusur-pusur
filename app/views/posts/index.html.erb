@@ -1,12 +1,17 @@
 <!--<h1>Posts</h1>-->
 
-
+<br/>
 <%= form_tag posts_path, :method => 'get' do %>
     <div>
       <%= select_tag :type, options_for_select({"Content" => :content,"Category" => :category,"User" => :user}, params[:type]) %>
       <%= text_field_tag :search, params[:search] %>
       <%= submit_tag "Search", :name => nil %>
     </div>
+<% end %>
+<div><br/>
+<span class="addNew"><%= link_to '+New Post', new_post_path %></span>
+<% if @posts.count == 0 %>
+  No posts to show!
 <% end %>
 <% @posts.each do |post| %>
       <div class="postBar">
@@ -34,3 +39,4 @@
 <br />
 
 <span class="addNew"><%= link_to '+New Post', new_post_path %></span>
+    </div>

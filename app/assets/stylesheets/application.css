@@ -118,7 +118,7 @@ body {
     padding: 2px;
     border-radius: 5px;
     text-shadow:0 1px 0 #ffe5d7
-        /* IE10 Consumer Preview */
+    /* IE10 Consumer Preview */
     background-image: -ms-linear-gradient(top, #D4908C 0%, #ab5453 100%);
     /* Mozilla Firefox */
     background-image: -moz-linear-gradient(top, #D4908C 0%, #ab5453 100%);
@@ -154,7 +154,7 @@ body {
     position: relative;
     top: -8px;
     background: #F9EDBE;
-    border-color: #F0C36D;
+    border: 1px solid #F0C36D;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     /*color: #222222;*/
     padding: 0 10px;

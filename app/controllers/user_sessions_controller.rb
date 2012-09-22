@@ -13,21 +13,21 @@ class UserSessionsController < ApplicationController
 
   end
 
+  # POST /user_sessions
   def create
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       session[:id] = @user_session.id
-      flash[:notice] = "Hello #{@user_session.user.name}, you are now logged in"
-      redirect_to(posts_path)
+      redirect_to posts_path, :notice => "Hello #{@user_session.user.name}, you are now logged in"
     else
       redirect_to(login_path)
     end
   end
 
+  # DELETE /user_sessions
   def destroy
     UserSession.destroy(@application_session)
     session[:id] = @user = nil
-    flash[:notice] = "You are now logged out"
-    redirect_to(root_url)
+    redirect_to root_url, :notice => "You are now logged out"
   end
 end
