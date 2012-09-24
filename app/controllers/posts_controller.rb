@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   end
 
   def report
-    @posts = Post.all
+    @posts = Post.all.sort_by{|p| - p.votes.count}
   end
 
   # GET /posts

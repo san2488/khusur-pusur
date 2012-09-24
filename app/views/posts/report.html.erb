@@ -1,16 +1,20 @@
 <h1>Report</h1>
-<table>
+<table class="report">
   <tr>
     <th>Post</th>
+    <th>Author</th>
     <th>Comments</th>
     <th>Votes</th>
+    <th>Last Modified</th>
   </tr>
   <% @posts.each do |post| %>
 
       <tr>
         <td><%= post.title %></td>
+        <td><%= post.user.name %></td>
         <td><%= post.comments.count %></td>
         <td><%= post.votes.count %></td>
+        <td><%= post.updated_at.asctime %></td>
       </tr>
   <% end %>
 </table>

@@ -81,3 +81,18 @@
     padding: 12px;
     width: 30%;
 }
+
+table.report {
+    width: 80%;
+    background: #F9EDBE;
+    padding: 2px;
+    border: #F0C36D solid 1px;
+    box-shadow: 0 0 3px #676869;
+}
+table.report th {
+    text-align: left    ;
+}
+
+table.report tr:nth-child(2n){
+    background: #F0C36D;
+}
