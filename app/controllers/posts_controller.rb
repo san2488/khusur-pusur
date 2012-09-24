@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_filter :is_own_post?
   before_filter :require_own_post, :only => [:edit, :destroy, :update]
   before_filter :require_admin, :only => [:report]
+
   def require_own_post
     @post = Post.find(params[:id])
     unless   is_own_post?

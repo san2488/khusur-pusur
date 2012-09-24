@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_user, :only => [:edit, :update, :destroy, :index]
+  before_filter :require_admin, :only => [:edit, :update, :destroy, :index]
   before_filter :require_no_user, :only => [:new, :create]
 
   def is_self?

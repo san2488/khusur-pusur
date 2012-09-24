@@ -6,6 +6,7 @@
     <th>Votes</th>
   </tr>
   <% @posts.each do |post| %>
+
       <tr>
         <td><%= post.title %></td>
         <td><%= post.comments.count %></td>

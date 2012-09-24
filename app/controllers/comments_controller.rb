@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_filter :require_user, :only => [:create, :new]
-
+  before_filter :require_user, :except => [:index, :show]
+  after_filter :update_timestamp, :except => [:index, :show]
   # GET /comments
   # GET /comments.json
   def index
@@ -75,5 +75,11 @@ class CommentsController < ApplicationController
       format.html { redirect_to post_path(@post.id) }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def update_timestamp
+    @post = Post.find(params[:post_id])
+    @post.update_attribute(:updated_at, Time.now)
   end
 end

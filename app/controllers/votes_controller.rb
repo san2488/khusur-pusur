@@ -1,4 +1,6 @@
 class VotesController < ApplicationController
+  before_filter :require_user, :except => [:index, :show]
+  after_filter :update_timestamp, :except => [:index, :show, :list]
   # GET /votes
   # GET /votes.json
   def index
@@ -37,7 +39,7 @@ class VotesController < ApplicationController
   #http://pathfindersoftware.com/2008/07/drying-up-rails-controllers-polymorphic-and-super-controllers/
   def create
     @klass = params[:voteable_type]
-    if @klass == 'comment'
+    if @klass.to_s.downcase == 'comment'
       @comment = Comment.find(params[:comment_id])
       @vote = @comment.votes.create(params[:vote])
       current_user.votes.push(@vote)
@@ -85,6 +87,18 @@ class VotesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to votes_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+  def update_timestamp
+    @klass = params[:voteable_type]
+    if @klass.to_s.downcase == 'comment'
+      @comment = Comment.find(params[:comment_id])
+      @comment.update_attribute(:update_at, Time.now)
+    else
+      @post = Post.find(params[:post_id])
+      @post.update_attribute(:updated_at, Time.now)
     end
   end
 end

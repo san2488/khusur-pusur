@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :votes, :dependent => :destroy
 
+  validates :name, :presence =>true
   validates_uniqueness_of :email, :message => "is already in use by another person"
   #
   validates_format_of :email, :with => /^.+@.+$/i,
