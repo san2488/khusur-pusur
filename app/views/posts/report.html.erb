@@ -14,7 +14,7 @@
         <td><%= post.user.name.capitalize %></td>
         <td><%= post.comments.count %></td>
         <td><%= post.votes.count %></td>
-        <td><%= post.updated_at.asctime %></td>
+        <td><%= post.updated_at.localtime.asctime %></td>
       </tr>
   <% end %>
 </table>

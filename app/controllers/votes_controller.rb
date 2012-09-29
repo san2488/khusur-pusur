@@ -43,12 +43,12 @@ class VotesController < ApplicationController
       @comment = Comment.find(params[:comment_id])
       @vote = @comment.votes.create(params[:vote])
       current_user.votes.push(@vote)
-      redirect_to post_path(@comment.post_id)
+      redirect_to post_path(@comment.post_id, :notice => 'Your vote was successfully recorded.')
     else
       @post = Post.find(params[:post_id])
       @vote = @post.votes.create(params[:vote])
       current_user.votes.push(@vote)
-      redirect_to post_path(@post)
+      redirect_to post_path(@post, :notice => 'Your vote was successfully recorded.')
     end
   end
 
@@ -69,7 +69,7 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       if @vote.update_attributes(params[:vote])
-        format.html { redirect_to @vote, notice: 'Vote was successfully updated.' }
+        format.html { redirect_to @vote, notice: 'Your vote was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

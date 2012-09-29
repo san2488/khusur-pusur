@@ -99,4 +99,5 @@ table.report tr:nth-child(2n){
 
 textarea {
     width: 98%;
+    height: 80px;
 }

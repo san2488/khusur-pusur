@@ -1,14 +1,9 @@
-<div>
-  <b>Name:</b>
-  <%= @user.name %>
+<h1>User Details</h1>
+<div class="card">
+  <span class="title"><%= @user.name %></span>
+  <span class='detail'><%= @user.is_admin ? "Administrator":"" %></span>
+  <span class="detail"><%=@user.email %></span>
 </div>
 
-<p>
-  <b>Email:</b>
-  <%=@user.email %>
-</p>
-
-<div><b>Is Administrator:</b> <%= @user.is_admin ? "Yes":"No" %></div>
-
-<%= link_to 'Edit Profile', edit_user_path(@user)  %>  |
-<%= link_to 'Back', root_url %>
+<%= link_to 'Edit', edit_user_path(@user)  %>  |
+<%= link_to 'Back', users_path %>

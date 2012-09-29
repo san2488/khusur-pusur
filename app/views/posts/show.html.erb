@@ -30,7 +30,7 @@
     <div class="addComment">
       <%= form_for([@post, @post.comments.build]) do |f| %>
           <div class="field">
-            <%= f.text_area :content, :cols => '35', :rows => '2' %>
+            <%= f.text_area :content %>
           </div>
           <div class="actions">
             <%= f.submit "Comment" %>

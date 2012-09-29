@@ -1,8 +1,8 @@
 
 
   <% @votes.each do |vote| %>
-      <div class="usercard">
-      <span class="username"><%= vote.user.name %></span>
-       <span class="emailid"><%= vote.user.email %></span>
+      <div class="card">
+      <span class="title"><%= vote.user.name %></span>
+       <span class="detail"><%= vote.user.email %></span>
       </div>
   <% end %>
