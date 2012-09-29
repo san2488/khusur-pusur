@@ -11,6 +11,12 @@
  *= require_self
  *= require_tree .
  */
+html, body {
+    height: 100%;
+}
+#wrap {
+    min-height: 100%;
+}
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 0;
@@ -61,20 +67,11 @@ body {
     padding-right: 10px;
 }
 
-#header {
-    width: 100%;
-    height: 169px;
-    background: url(MEGASTATE1024x768b.jpg) #000000 no-repeat;
-    color: #ffffff;
-    text-indent: 50px;
-    font-size: 40px;
-    line-height: 169px;
-}
-
 #content {
     width: 90%;
     margin: 0 auto;
-
+    padding-bottom: 20px;
+    min-height: 100%;
 }
 .left {
     float: left;
@@ -84,8 +81,6 @@ body {
 }
 .clear {
     clear: both;
-}
-.addNew {
 }
 .addNew a, .actions input[type=submit]{
     font-size: 12px;
@@ -97,21 +92,25 @@ body {
 
 
     /* IE10 Consumer Preview */
-    background-image: -ms-linear-gradient(top, #D4908C 0%, #ab5453 100%);
+    background-image: -ms-linear-gradient(top, #b47b77 0%, #9E0B0B 100%);
     /* Mozilla Firefox */
-    background-image: -moz-linear-gradient(top, #b47b77 0%, #ab5453 100%);
+    background-image: -moz-linear-gradient(top, #b47b77 0%, #9E0B0B 100%);
     /* Opera */
-    background-image: -o-linear-gradient(top, #D4908C 0%, #ab5453 100%);
+    background-image: -o-linear-gradient(top, #b47b77 0%, #9E0B0B 100%);
     /* Webkit (Safari/Chrome 10) */
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #D4908C), color-stop(1, #ab5453));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #D4908C), color-stop(1, #9E0B0B));
     /* Webkit (Chrome 11+) */
-    background-image: -webkit-linear-gradient(top, #D4908C 0%, #ab5453 100%);
+    background-image: -webkit-linear-gradient(top, #b47b77 0%, #9E0B0B 100%);
     /* W3C Markup, IE10 Release Preview */
-    background-image: linear-gradient(to bottom, #D4908C 0%, #ab5453 100%);
+    background-image: linear-gradient(to bottom, #b47b77 0%, #9E0B0B 100%);
     text-decoration: none;
     color: white;
 }
-
+input[type=submit].plus1 {
+    font-size: 8px;
+    font-size: 10px;
+    padding: 1px 5px 2px;
+}
 .category {
     background-color: #708090;
     color: #5E2523;
@@ -164,4 +163,74 @@ body {
     z-index: 990;
     margin: 0 auto;
     line-height: normal;
+}
+
+input[type="submit"] {
+    background-color: #9E0B0B;
+    border: 1px solid #5E2523;
+    color: #FFF;
+    padding: 2px 4px;
+}
+
+
+#errors li {
+    list-style-image: url(alert_red.png);
+}
+#errors{
+    background: #F9EDBE;
+    padding: 6px;
+    display: inline-block;
+    /*width: 35%;*/
+    /*margin-top: 6px;*/
+    border:1px solid #F0C36D;
+    border-radius: 6px;
+    box-shadow:  0 2px 2px rgba(0, 0, 0, 0.2);;
+
+}
+.field {
+    margin-bottom: 8px;
+}
+.field label{
+    display: block;
+}
+
+div#footer {
+    /*bottom: 0px;*/
+    width: 100%;
+    background: url("topBarBG.jpg") top;
+    text-align: center;
+    color: #F5DEB3;
+    position: relative;
+    margin-top: -20px; /* negative value of footer height */
+    height: 20px;
+    clear:both;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.card {
+    background: #F9EDBE;
+    padding: 4px;
+    /*display: inline-block;*/
+    width: 25%;
+    margin-top: 6px;
+    border:1px solid #F0C36D;
+    border-radius: 6px;
+    box-shadow:  0 2px 2px rgba(0, 0, 0, 0.2);;
+}
+
+.card .title {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+}
+
+.card .detail {
+    font-style: italic;
+    font-size: 14px;
+    display: block;
+}
+
+.card .links {
+    font-size: 12px;
 }

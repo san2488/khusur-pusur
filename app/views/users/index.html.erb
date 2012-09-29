@@ -2,9 +2,9 @@
 
 
   <% @users.each do |user| %>
-    <div class="usercard">
-        <span class="username"><%= user.name %></span>
-        <span class="emailid"><%= user.email %></span>
+    <div class="card">
+        <span class="title"><%= user.name %></span>
+        <span class="detail"><%= user.email %></span>
         <div class="links"><%= link_to 'Show', user %>
         | <%= link_to 'Edit', edit_user_path(user) %>
         | <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></div>

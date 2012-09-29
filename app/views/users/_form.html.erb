@@ -1,9 +1,7 @@
 <%= form_for @user do |f| %>
 
     <% if @user.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
+        <div id="errors">
           <ul>
             <% @user.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
@@ -12,26 +10,26 @@
         </div>
     <% end %>
 
-    <p>
-      <%= f.label :name %><br/>
+    <div class="field">
+      <%= f.label :name %>
       <%= f.text_field :name %>
-    </p>
-    <p>
-      <%= f.label :email %><br />
-      <%= f.text_field :email %>
-    </p>
-    <p>
-      <%= f.label :password, f.object.new_record? ? nil : "Change password" %><br/>
-      <%= f.password_field :password %>
-    </p>
-    <p>
-      <%= f.label :password_confirmation %><br/>
-      <%= f.password_field :password_confirmation %>
-    </p>
-    <% if @current_user && @current_user.is_admin %>
-    <div>
-      <%= f.check_box :is_admin %> Administrator
     </div>
-        <% end %>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :password, f.object.new_record? ? nil : "Change password" %>
+      <%= f.password_field :password %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <div class="field">
+      <% if @current_user && @current_user.is_admin %>
+          <%= f.check_box :is_admin %> Administrator
+      <% end %>
+    </div>
     <%= f.submit "Register" %>
 <% end %>

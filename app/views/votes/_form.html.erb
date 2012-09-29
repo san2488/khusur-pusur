@@ -13,7 +13,7 @@ http://stackoverflow.com/questions/3596219/rails-2-3-8-form-for-partials-not-gen
       <% else %>
           <% if @current_user && local_assigns[:obj].user.id != @current_user.id %>
           <div class="actions">
-            <%= f.submit "+1" %>
+            <%= f.submit "+1", :class => ['plus1'] %>
           </div>
               <% end %>
           <% if local_assigns[:obj].votes.count > 0 %>

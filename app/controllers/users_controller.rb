@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :require_admin, :only => [:edit, :update, :destroy, :index]
+  before_filter :is_self_or_admin?, :only => [:edit, :update, :destroy, :index]
   before_filter :require_no_user, :only => [:new, :create]
 
-  def is_self?
+  def is_self_or_admin?
     @is_self = @current_user && ((@current_user.id == @user.id) || @current_user.is_admin)
   end
 
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if @user.save
       @user_session = @user.user_sessions.create
       session[:id] = @user_session.id
-      flash[:notice] = "Welcome #{@user.name}, you are now registered"
+      flash[:notice] = "Welcome #{@user.name.capitalize}, you are now registered"
       redirect_to(posts_path)
     else
       render(:action => 'new')

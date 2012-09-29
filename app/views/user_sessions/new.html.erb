@@ -1,14 +1,15 @@
-<h1>Login</h1>
+
 <div class="left">
+  <h2>Login</h2>
 <%= form_for @user_session, :as => :user_session, :url => { :action => "create" } do |f| %>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %><br />
-    <br />
-    <%= f.label :password %><br />
-    <%= f.password_field :password %><br />
-    <br />
+      <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+      </div>
+      <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %></div>
     <!--= f.check_box :remember_me %><!--= f.label :remember_me %><br />  -->
-    <br />
     <%= f.submit "Login" %>
 <% end %>
 </div>
