@@ -26,3 +26,12 @@ h. Login credentials (seeded):
 2. mschaudh@ncsu.edu		123456
 3. aspalana@ncsu.edu		123456
  
+i. Tests:
+  1. Unit:
+    i) Post
+    ii) User
+  2. Functional:
+    i) Posts
+    ii) User Session
+  3. Integration:
+    i) Login-Create_Posts
