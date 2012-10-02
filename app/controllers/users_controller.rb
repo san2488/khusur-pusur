@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   before_filter :is_self_or_admin?, :only => [:edit, :update, :destroy, :index]
   before_filter :require_no_user, :only => [:new, :create]
+  before_filter :is_not_primary_admin?, :only => [:edit, :destroy]
+
+  def is_not_primary_admin?
+    @user = User.find_by_id(params[:id])
+    @user.email != 'sujay.narsale@gmail.com'
+  end
 
   def is_self_or_admin?
     @is_self = @current_user && ((@current_user.id == @user.id) || @current_user.is_admin)

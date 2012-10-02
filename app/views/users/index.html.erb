@@ -1,14 +1,18 @@
 <h1>Registered Users</h1>
 
 
-  <% @users.each do |user| %>
+<% @users.each do |user| %>
     <div class="card">
-        <span class="title"><%= user.name %></span>
-        <span class="detail"><%= user.email %></span>
-        <div class="links"><%= link_to 'Show', user %>
-        | <%= link_to 'Edit', edit_user_path(user) %>
-        | <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></div>
-    </div>
-  <% end %>
+      <span class="title"><%= user.name %></span>
+      <span class="detail"><%= user.email %></span>
 
-<br />
+      <div class="links"><%= link_to 'Show', user %>
+        <% if user.email != 'sujay.narsale@gmail.com' %>
+        | <%= link_to 'Edit', edit_user_path(user) %>
+            |  <%= link_to 'Delete', user, method: :delete, data: {confirm: 'Are you sure?'} %>
+        <% end %>
+      </div>
+    </div>
+<% end %>
+
+<br/>
