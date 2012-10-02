@@ -80,8 +80,8 @@ class CommentsController < ApplicationController
 
   private
   def update_timestamp
-    @comment = Comment.find(params[:id])
-    @post = Post.find(@comment.post_id)
+    #@comment = Comment.find(params[:id])
+    #@post = Post.find(@comment.post_id)
     @post.update_attribute(:updated_at, Time.now)
   end
 end

@@ -13,7 +13,7 @@ class UserSessionTest < ActionDispatch::IntegrationTest
     #Login and authenticate user
     post user_sessions_path, :user_session => { :email => users(:sujay).email, :password => '123456' }
     assert_redirected_to posts_path
-    assert_equal 'Hello sujay, you are now logged in', flash[:notice]
+    assert_equal 'Hello Sujay, you are now logged in.', flash[:notice]
 
     #Create new post
     user = User.find_by_email(users(:sujay).email)
@@ -25,7 +25,7 @@ class UserSessionTest < ActionDispatch::IntegrationTest
     #Logout
     get logout_path
     assert_redirected_to root_url
-    assert_equal 'You are now logged out', flash[:notice]
+    assert_equal 'You are now logged out.', flash[:notice]
   end
 end
 

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   before_filter :require_user, :except => [:show, :index]
-  before_filter :is_own_post?
+  #before_filter :is_own_post?
   before_filter :require_own_post, :only => [:edit, :destroy, :update]
   before_filter :require_admin, :only => [:report]
 

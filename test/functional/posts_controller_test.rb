@@ -1,8 +1,16 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
+  fixtures :users
+  fixtures :posts
+  fixtures :categories
   setup do
-    @post = posts(:one)
+    @user = users(:sujay)
+    @user_session = UserSession.create({ :email => users(:sujay).email, :password => '123456' })
+    session[:id] = @user_session.id
+    #post user_sessions_path, :user_session => { :email => users(:sujay).email, :password => '123456' }
+    @post = Post.new({:title=>"Hello World", :content=>"This is a post", :category_id => categories(:ruby).id})
+    @post.user = @user
   end
 
   test "should get index" do
@@ -18,7 +26,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test "should create post" do
     assert_difference('Post.count') do
-      post :create, post: {  }
+      post :create, post: {:title=>@post.title, :content=>@post.content, :category_id=>@post.category.id}
     end
 
     assert_redirected_to post_path(assigns(:post))
@@ -35,7 +43,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should update post" do
-    put :update, id: @post, post: {  }
+    put :update, id: @post, post: { :title=>"Edited Title"  }
     assert_redirected_to post_path(assigns(:post))
   end
 
