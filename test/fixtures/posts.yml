@@ -1,8 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 #
-#post1:
-#  title: "Hello World"
-#  content: "This is a post"
+post1:
+  title: "Hello World"
+  content: "This is a post"
+  user: sujay
+  category: ruby
 
 #two:
 #  title: MyString

@@ -5,5 +5,8 @@
 # below each fixture, per the syntax in the comments below
 #
 #
-two: {}
+admin_login:
+   user: sujay
+   ip_address: "127.0.0.1"
+   path: "/"
 #  column: value

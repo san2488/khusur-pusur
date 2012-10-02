@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserSessionTest < ActionDispatch::IntegrationTest
+class LoginCreatePostTest < ActionDispatch::IntegrationTest
   fixtures :users
   fixtures :categories
 

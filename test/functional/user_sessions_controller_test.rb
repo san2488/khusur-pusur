@@ -2,48 +2,24 @@ require 'test_helper'
 
 class UserSessionsControllerTest < ActionController::TestCase
   setup do
-    @user_session = user_sessions(:one)
-  end
-
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:user_sessions)
-  end
-
-  test "should get new" do
-    get :new
-    assert_response :success
+    @user_session = user_sessions(:admin_login)
   end
 
   test "should create user_session" do
     assert_difference('UserSession.count') do
-      post :create, user_session: {  }
+      post :create, user_session: { :email=>@user_session.user.email, :password=>'123456' }
     end
 
-    assert_redirected_to user_session_path(assigns(:user_session))
-  end
-
-  test "should show user_session" do
-    get :show, id: @user_session
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @user_session
-    assert_response :success
-  end
-
-  test "should update user_session" do
-    put :update, id: @user_session, user_session: {  }
-    assert_redirected_to user_session_path(assigns(:user_session))
+    assert_redirected_to posts_path()
   end
 
   test "should destroy user_session" do
+    #Simulate login
+    session[:id] = @user_session.id
     assert_difference('UserSession.count', -1) do
-      delete :destroy, id: @user_session
+      delete :destroy, id: user_sessions(:admin_login)
     end
 
-    assert_redirected_to user_sessions_path
+    assert_redirected_to root_url
   end
 end
