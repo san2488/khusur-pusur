@@ -96,6 +96,8 @@ class VotesController < ApplicationController
     if @klass.to_s.downcase == 'comment'
       @comment = Comment.find(params[:comment_id])
       @comment.update_attribute(:updated_at, Time.now)
+      @post = @comment.post
+      @post.update_attribute(:updated_at, Time.now)
     else
       @post = Post.find(params[:post_id])
       @post.update_attribute(:updated_at, Time.now)
