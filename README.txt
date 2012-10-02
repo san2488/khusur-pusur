@@ -19,14 +19,12 @@ d.  Run -> Development:Khusur-Pusur, then go to the above URL. The login page sh
 
 e. Worked on the UI ( using CSS ) to make it look good. Implemented password encryption.
 
-f. Integration Testing is Work in Progress
-
-h. Login credentials (seeded):
-1. sujay.narsale@gmail.com	123456		--> Admin
-2. mschaudh@ncsu.edu		123456
-3. aspalana@ncsu.edu		123456
+f. Login credentials (seeded):
+ 1. sujay.narsale@gmail.com	123456		--> Admin
+ 2. mschaudh@ncsu.edu		123456
+ 3. aspalana@ncsu.edu		123456
  
-i. Tests:
+g. Tests:
   1. Unit:
     i) Post
     ii) User
