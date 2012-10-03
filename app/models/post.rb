@@ -16,9 +16,9 @@ attr_accessible :content, :title, :category_id
   def self.search(type, search)
     case
       when type == "user"
-        user = User.first(:conditions => ['name LIKE ?', "%#{search}%"])
-        if user
-        Post.find_all_by_user_id(user.id)
+        users = User.all(:conditions => ['name LIKE ?', "%#{search}%"])
+        if users
+        Post.find_all_by_user_id(users)
         else
           Array.new
           end
