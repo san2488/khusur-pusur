@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def is_not_primary_admin?
     @user = User.find_by_id(params[:id])
-    @user.email != 'sujay.narsale@gmail.com'
+    #@user.email != 'sujay.narsale@gmail.com'
   end
 
   def is_self_or_admin?
